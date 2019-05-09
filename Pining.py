@@ -25,7 +25,7 @@ ________________________________________________________________________________
 	-> Tu decides los rangos que queres asignar.
 		Colocado la IP donde iniciara y despues la IP en la que quieres acabar.
 	-> Las IP(s) se filtraran solo mostrando las que hace PING correctamene. 
-		De todas formas todos lo movimientos se guardan el el log.
+		De todas formas todos lo movimientos se guardan en el log.
 
 __________________________________________________________________________________________
 
