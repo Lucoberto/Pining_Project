@@ -34,6 +34,7 @@ ________________________________________________________________________________
 	"""
 	print(var)
 	print("-> 1 para volver atras.")
+	print("")
 	op = input("Pininig@pining$~> ")
 	if op == "1":
 		menuac="opciones"
@@ -49,8 +50,8 @@ def automatico():
 					if ip == ip2:
 						sys.exit()
 					else:
-						logging.basicConfig(filename='Pining.log',format='%(message)s %(asctime)s',level=logging.WARNING )
-						logging.warning("IP --> "+ip2)
+						logging.basicConfig(filename='Pining.log',format='%(message)s %(asctime)s',level=logging.INFO )
+						logging.info("IP --> "+ip2)
 						os.system("ping -w 1 "+ip2+"| grep from ")
 def a_la_carta():
 	global menuac
@@ -58,27 +59,62 @@ def a_la_carta():
 	print("--> Coloque la primera IP.")
 	P1=input("Pininig@pining$~> ")
 	p1 = P1.split(".")
-	print("--> Coloque la IP a la que quiere llegar.")
-	ip=input("Pininig@pining$~> ")
-	print("----------------------------------------------")
-	for N1 in range(int(p1[0]),256):
-		if parar == 1:
-			break
-		for N2 in range(int(p1[1]),256):
-			if parar == 1:
-				break
-			for N3 in range(int(p1[2]),256):
+	if int(p1[0]) >= int(256):
+		menuac="ERROR"
+	elif int(p1[1]) >= int(256):
+		menuac="ERROR"
+	elif int(p1[2]) >= int(256):
+		menuac="ERROR"
+	elif int(p1[3]) >= int(256):
+		menuac="ERROR"
+	else:
+		print("--> Coloque la IP a la que quiere llegar.")
+		ip=input("Pininig@pining$~> ")
+		Ip = ip.split(".")
+		if int(Ip[0]) >= int(256):
+			menuac="ERROR"
+		elif int(Ip[1]) >= int(256):
+			menuac="ERROR"
+		elif int(Ip[2]) >= int(256):
+			menuac="ERROR"
+		elif int(Ip[3]) >= int(256):
+			menuac="ERROR"
+		else:
+			print("----------------------------------------------")
+			for N1 in range(int(p1[0]),256):
 				if parar == 1:
 					break
-				for N4 in range(int(p1[3]),256):
-					rango="{}.{}.{}.{}".format(N1,N2,N3,N4)
-					if ip == rango:
-						parar = 1
+				for N2 in range(int(p1[1]),256):
+					if parar == 1:
 						break
-					else:
-						logging.basicConfig(filename='Pining.log',format='%(message)s %(asctime)s',level=logging.WARNING )
-						logging.warning("IP --> "+rango)
-						os.system("ping -w 1 "+rango+"| grep from ")
+					for N3 in range(int(p1[2]),256):
+						if parar == 1:
+							break
+						for N4 in range(int(p1[3]),256):
+							rango="{}.{}.{}.{}".format(N1,N2,N3,N4)
+							if ip == rango:
+								parar = 1
+								break
+							else:
+								logging.basicConfig(filename='Pining.log',format='%(message)s %(asctime)s',level=logging.INFO )
+								logging.info("IP --> "+rango)
+								os.system("ping -w 1 "+rango+"| grep from ")
+def ERROR():
+	global menuac
+	error="""
+--> ERROR! numero no compatible con el sistema.
+
+	Parece que acabas de colocar un numero que no es compatible o supera
+	el rango maximo, no puedes colocar mas de 255.255.255.255, 
+	ese es el limite establecido.
+
+	"""
+	print(error)
+	print("-> 1 para volver atras.")
+	volveratras = input("Pininig@pining$~> ")
+	if volveratras == "1":
+		menuac="opciones"
+
 menu2="""                                                              
    88888888ba   88  888b      88  88  888b      88    ,ad8888ba,   
    88      "8b  88  8888b     88  88  8888b     88   d8"'    `"8b 
@@ -89,7 +125,7 @@ menu2="""
    88           88  88     `8888  88  88     `8888   Y8a.    .a88  
    88           88  88      `888  88  88      `888    `"Y88888P"
 
-___________[<!>]V4.3.5 -> Debeloped by @Lucoberto[<!>]_______________
+___________[<!>]V4.6.5 -> Debeloped by @Lucoberto[<!>]_______________
 			[1] Pining Automatico
 			[2] Pining Personalizado
 			[3] Ayuda
@@ -100,6 +136,7 @@ def opciones():
 	global menuac
 	print(menu2)
 	print("-> Elija una opcion.")
+	print("")
 	op = input("Pininig@pining$~> ")
 	if op == "1":
 		menuac = "automatico"
@@ -118,6 +155,8 @@ def motor():
 				automatico()
 			elif menuac == "a_la_carta":
 				a_la_carta()
+			elif menuac == "ERROR":
+				ERROR()
 			elif menuac == "ayuda":
 				ayuda()
 
