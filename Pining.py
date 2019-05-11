@@ -89,7 +89,7 @@ menu2="""
    88           88  88     `8888  88  88     `8888   Y8a.    .a88  
    88           88  88      `888  88  88      `888    `"Y88888P"
 
-___________[<!>]V2.0.4 -> Debeloped by @Lucoberto[<!>]_______________
+___________[<!>]V4.3.5 -> Debeloped by @Lucoberto[<!>]_______________
 			[1] Pining Automatico
 			[2] Pining Personalizado
 			[3] Ayuda
