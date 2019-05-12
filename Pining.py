@@ -22,11 +22,16 @@ ________________________________________________________________________________
 __________________________________________________________________________________________
 
 -> El modo Personalizado funciona de esta manera:
-	-> Tu decides los rangos que queres asignar.
-		Colocado la IP donde iniciara y despues la IP en la que quieres acabar.
+	-> Usted decide los rangos que quere asignar.
+		Colocado la IP donde iniciara y despues la IP en la que quiere finalizar.
 	-> Las IP(s) se filtraran solo mostrando las que hace PING correctamene. 
 		De todas formas todos lo movimientos se guardan en el log.
+__________________________________________________________________________________________
 
+-> El modo URL funciona de la siguiente manera:
+	-> Tiene que colcar la URL de la siguiente forma:
+		-> www.duckduckgo.com puede ser que alguna pagina no llegue a dar ping
+			esto puede llegar a ser por cuestiones de seguridad.
 __________________________________________________________________________________________
 
 		Gracias por usar nuestros productos ©Fury.OS Software.
@@ -99,13 +104,23 @@ def a_la_carta():
 								logging.basicConfig(filename='Pining.log',format='%(message)s %(asctime)s',level=logging.INFO )
 								logging.info("IP --> "+rango)
 								os.system("ping -w 1 "+rango+"| grep from ")
+def URL():
+	global menuac
+	print("--> Coloque la URL a la que quiere hacer ping.")
+	url = input("Pininig@pining$~> ")
+	os.system("ping -w 1 "+url)
+	print("-> 1 para volver atras.")
+	print("")
+	op = input("Pininig@pining$~> ")
+	if op == "1":
+		menuac="opciones"
 def ERROR():
 	global menuac
 	error="""
 --> ERROR! numero no compatible con el sistema.
 
-	Parece que acabas de colocar un numero que no es compatible o supera
-	el rango maximo, no puedes colocar mas de 255.255.255.255, 
+	Parece que acaba de colocar un numero que no es compatible o supera
+	el rango maximo, no puede colocar mas de 255.255.255.255, 
 	ese es el limite establecido.
 
 	"""
@@ -125,11 +140,12 @@ menu2="""
    88           88  88     `8888  88  88     `8888   Y8a.    .a88  
    88           88  88      `888  88  88      `888    `"Y88888P"
 
-___________[<!>]V4.6.5 -> Debeloped by @Lucoberto[<!>]_______________
+___________[<!>]V5.3.6 -> Debeloped by @Lucoberto[<!>]_______________
 			[1] Pining Automatico
 			[2] Pining Personalizado
-			[3] Ayuda
-			[4] Salir
+			[3] Pining URL
+			[4] Ayuda
+			[5] Salir
 """
 def opciones():
 	os.system("clear")
@@ -143,8 +159,10 @@ def opciones():
 	elif op == "2":
 		menuac="a_la_carta"
 	elif op == "3":
-		menuac="ayuda"
+		menuac="URL"
 	elif op == "4":
+		menuac="ayuda"
+	elif op == "5":
 		exit()
 def motor():
 	try:
@@ -155,11 +173,12 @@ def motor():
 				automatico()
 			elif menuac == "a_la_carta":
 				a_la_carta()
+			elif menuac == "URL":
+				URL()
 			elif menuac == "ERROR":
 				ERROR()
 			elif menuac == "ayuda":
 				ayuda()
-
 	except KeyboardInterrupt:
 		sys.exit()
 if __name__=="__main__":
