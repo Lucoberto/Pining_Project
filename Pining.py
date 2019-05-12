@@ -108,6 +108,8 @@ def URL():
 	global menuac
 	print("--> Coloque la URL a la que quiere hacer ping.")
 	url = input("Pininig@pining$~> ")
+	logging.basicConfig(filename='Pining.log',format='%(message)s %(asctime)s',level=logging.INFO )
+	logging.info("URL --> "+url)
 	os.system("ping -w 1 "+url)
 	print("-> 1 para volver atras.")
 	print("")
@@ -140,7 +142,7 @@ menu2="""
    88           88  88     `8888  88  88     `8888   Y8a.    .a88  
    88           88  88      `888  88  88      `888    `"Y88888P"
 
-___________[<!>]V5.3.6 -> Debeloped by @Lucoberto[<!>]_______________
+___________[<!>]V5.3.7 -> Debeloped by @Lucoberto[<!>]_______________
 			[1] Pining Automatico
 			[2] Pining Personalizado
 			[3] Pining URL
@@ -183,3 +185,4 @@ def motor():
 		sys.exit()
 if __name__=="__main__":
 	motor()
+
