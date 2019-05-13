@@ -61,10 +61,12 @@ def automatico():
 def a_la_carta():
 	global menuac
 	parar=0
-	print("--> Coloque la primera IP.")
+	print("--> 1 para salir o Coloque la primera IP.")
 	P1=input("Pininig@pining$~> ")
 	p1 = P1.split(".")
-	if int(p1[0]) >= int(256):
+	if P1 == "1":
+		menuac="opciones"
+	elif int(p1[0]) >= int(256):
 		menuac="ERROR"
 	elif int(p1[1]) >= int(256):
 		menuac="ERROR"
@@ -73,10 +75,12 @@ def a_la_carta():
 	elif int(p1[3]) >= int(256):
 		menuac="ERROR"
 	else:
-		print("--> Coloque la IP a la que quiere llegar.")
+		print("--> 1 para salir o Coloque la IP a la que quiere llegar.")
 		ip=input("Pininig@pining$~> ")
 		Ip = ip.split(".")
-		if int(Ip[0]) >= int(256):
+		if ip == "1":
+			menuac="opciones"
+		elif int(Ip[0]) >= int(256):
 			menuac="ERROR"
 		elif int(Ip[1]) >= int(256):
 			menuac="ERROR"
@@ -110,7 +114,7 @@ def URL():
 	url = input("Pininig@pining$~> ")
 	logging.basicConfig(filename='Pining.log',format='%(message)s %(asctime)s',level=logging.INFO )
 	logging.info("URL --> "+url)
-	os.system("ping -w 1 "+url)
+	os.system("curl -Is   "+url+" | head -1")
 	print("-> 1 para volver atras.")
 	print("")
 	op = input("Pininig@pining$~> ")
@@ -130,7 +134,7 @@ def ERROR():
 	print("-> 1 para volver atras.")
 	volveratras = input("Pininig@pining$~> ")
 	if volveratras == "1":
-		menuac="opciones"
+		menuac="a_la_carta"
 
 menu2="""                                                              
    88888888ba   88  888b      88  88  888b      88    ,ad8888ba,   
@@ -142,7 +146,7 @@ menu2="""
    88           88  88     `8888  88  88     `8888   Y8a.    .a88  
    88           88  88      `888  88  88      `888    `"Y88888P"
 
-___________[<!>]V5.3.7 -> Debeloped by @Lucoberto[<!>]_______________
+___________[<!>]V5.4.8 -> Debeloped by @Lucoberto[<!>]_______________
 			[1] Pining Automatico
 			[2] Pining Personalizado
 			[3] Pining URL
@@ -185,4 +189,3 @@ def motor():
 		sys.exit()
 if __name__=="__main__":
 	motor()
-
