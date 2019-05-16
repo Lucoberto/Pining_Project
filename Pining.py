@@ -1,46 +1,67 @@
 #-*-coding:utf-8-*-
-import os, sys, logging
+import os, sys, logging,platform
 menuac="opciones"
+R= '\033[31m'
+G= '\033[32m'
+C= '\033[36m'
+P= '\033[35m'
+O= '\033[33m'
+W= '\033[0m'
 def ayuda():
 	os.system("clear")
 	global menuac
-	var="""
+	logoayuda="""
 
-	         db    8b        d8  88        88  88888888ba,         db         
-	        d88b    Y8,    ,8P   88        88  88      `"8b       d88b        
-	       d8'`8b    Y8,  ,8P    88        88  88        `8b     d8'`8b       
-	      d8'  `8b    "8aa8"     88        88  88         88    d8'  `8b      
-	     d8YaaaaY8b    `88'      88        88  88         88   d8YaaaaY8b     
-	    d8"      "8b    88       88        88  88         8P  d8"      "8b    
-	   d8'        `8b   88       Y8a.    .a8P  88      .a8P  d8'        `8b   
-	  d8'          `8b  88        `"Y8888Y"'   88888888Y"'  d8'          `8b 
+	  /$$$$$$                            /$$
+	 /$$__  $$                          | $$
+	| $$  \ $$ /$$   /$$ /$$   /$$  /$$$$$$$  /$$$$$$ 
+	| $$$$$$$$| $$  | $$| $$  | $$ /$$__  $$ |____  $$
+	| $$__  $$| $$  | $$| $$  | $$| $$  | $$  /$$$$$$$
+	| $$  | $$| $$  | $$| $$  | $$| $$  | $$ /$$__  $$
+	| $$  | $$|  $$$$$$$|  $$$$$$/|  $$$$$$$|  $$$$$$$
+	|__/  |__/ \____  $$ \______/  \_______/ \_______/
+	           /$$  | $$ 
+	          |  $$$$$$/
+	           \______/"""
+
+	explicaci="""
 __________________________________________________________________________________________
 
 -> El modo automatico funciona de la siguiente manera:
 	-> Tiene asignado un rangode IP(s) de 192.168.1.0 asta 192.168.1.255.
-	   Eso significa que solo cubrira ese rango de IP(s).
+	   Eso significa que solo cubrira ese rango de IP(s)."""
+	
+	expliPer="""
 __________________________________________________________________________________________
 
 -> El modo Personalizado funciona de esta manera:
 	-> Usted decide los rangos que quere asignar.
 		Colocado la IP donde iniciara y despues la IP en la que quiere finalizar.
 	-> Las IP(s) se filtraran solo mostrando las que hace PING correctamene. 
-		De todas formas todos lo movimientos se guardan en el log.
+		De todas formas todos lo movimientos se guardan en el log."""
+
+	expliUR="""
 __________________________________________________________________________________________
 
 -> El modo URL funciona de la siguiente manera:
 	-> Tiene que colcar la URL de la siguiente forma:
-		-> www.duckduckgo.com puede ser que alguna pagina no llegue a dar ping
-			esto puede llegar a ser por cuestiones de seguridad.
+		-> https://duc0duc0go.com puede ser que alguna pagina no llegue a dar ping
+			esto puede ser por cuestiones de seguridad del propio servidor."""
+
+	Desp="""
 __________________________________________________________________________________________
 
-		Gracias por usar nuestros productos ©Fury.OS Software.
+		                 Atentamente ©Fury.OS Software.
 __________________________________________________________________________________________
 	"""
-	print(var)
-	print("-> 1 para volver atras.")
+	print(C+logoayuda+W)
+	print(P+explicaci+W)
+	print(G+expliPer+W)
+	print(O+expliUR+W)
+	print(R+Desp+W)
+	print(R+'[1]'+O+' para volver atras.'+W)
 	print("")
-	op = input("Pininig@pining$~> ")
+	op = input(G+'Pininig'+P+'@'+G+'pining'+P+'$~> '+W)
 	if op == "1":
 		menuac="opciones"
 
@@ -61,8 +82,8 @@ def automatico():
 def a_la_carta():
 	global menuac
 	parar=0
-	print("--> 1 para salir o Coloque la primera IP.")
-	P1=input("Pininig@pining$~> ")
+	print(R+'[1]'+O+' para salir '+G+'o'+C+' Coloque la pimera IP.'+W)
+	P1=input(G+'Pininig'+P+'@'+G+'pining'+P+'$~> '+W)
 	p1 = P1.split(".")
 	if P1 == "1":
 		menuac="opciones"
@@ -75,8 +96,8 @@ def a_la_carta():
 	elif int(p1[3]) >= int(256):
 		menuac="ERROR"
 	else:
-		print("--> 1 para salir o Coloque la IP a la que quiere llegar.")
-		ip=input("Pininig@pining$~> ")
+		print(R+'[1]'+O+' para salir '+G+'o'+C+' Coloque la IP a la que quiere llegar.'+W)
+		ip=input(G+'Pininig'+P+'@'+G+'pining'+P+'$~> '+W)
 		Ip = ip.split(".")
 		if ip == "1":
 			menuac="opciones"
@@ -89,16 +110,16 @@ def a_la_carta():
 		elif int(Ip[3]) >= int(256):
 			menuac="ERROR"
 		else:
-			print("----------------------------------------------")
+			print(P+'----------------------------------------------'+W)
 			for N1 in range(int(p1[0]),256):
 				if parar == 1:
-					break
+					brea0
 				for N2 in range(int(p1[1]),256):
 					if parar == 1:
-						break
+						brea0
 					for N3 in range(int(p1[2]),256):
 						if parar == 1:
-							break
+							brea0
 						for N4 in range(int(p1[3]),256):
 							rango="{}.{}.{}.{}".format(N1,N2,N3,N4)
 							if ip == rango:
@@ -110,56 +131,60 @@ def a_la_carta():
 								os.system("ping -w 1 "+rango+"| grep from ")
 def URL():
 	global menuac
-	print("--> Coloque la URL a la que quiere hacer ping.")
-	url = input("Pininig@pining$~> ")
+	print(C+'--> Coloque la URL a la que quiere hacer ping.'+W)
+	url = input(G+'Pininig'+P+'@'+G+'pining'+P+'$~> '+W)
 	logging.basicConfig(filename='Pining.log',format='%(message)s %(asctime)s',level=logging.INFO )
 	logging.info("URL --> "+url)
 	os.system("curl -Is   "+url+" | head -1")
-	print("-> 1 para volver atras.")
+	print(R+'[1]'+O+' para volver atras.'+W)
 	print("")
-	op = input("Pininig@pining$~> ")
+	op = input(G+'Pininig'+P+'@'+G+'pining'+P+'$~> '+W)
 	if op == "1":
 		menuac="opciones"
 def ERROR():
 	global menuac
 	error="""
---> ERROR! numero no compatible con el sistema.
-
 	Parece que acaba de colocar un numero que no es compatible o supera
 	el rango maximo, no puede colocar mas de 255.255.255.255, 
 	ese es el limite establecido.
 
 	"""
-	print(error)
-	print("-> 1 para volver atras.")
-	volveratras = input("Pininig@pining$~> ")
+	print(R+' ERROR!'+P+' numero no compatible con el sistema.'+W)
+	print(P+error+W)
+	print(R+'[1]'+O+' para volver atras.'+W)
+	volveratras = input(G+'Pininig'+P+'@'+G+'pining'+P+'$~> '+W)
 	if volveratras == "1":
 		menuac="a_la_carta"
 
-menu2="""                                                              
-   88888888ba   88  888b      88  88  888b      88    ,ad8888ba,   
-   88      "8b  88  8888b     88  88  8888b     88   d8"'    `"8b 
-   88      ,8P  88  88 `8b    88  88  88 `8b    88  d8'            
-   88aaaaaa8P'  88  88  `8b   88  88  88  `8b   88  88             
-   88'          88  88   `8b  88  88  88   `8b  88  88      88888  
-   88           88  88    `8b 88  88  88    `8b 88  Y8,        88  
-   88           88  88     `8888  88  88     `8888   Y8a.    .a88  
-   88           88  88      `888  88  88      `888    `"Y88888P"
+logomenu="""                         
+ 
+	 /$$$$$$$  /$$           /$$
+	| $$__  $$|__/          |__/
+	| $$  \ $$ /$$ /$$$$$$$  /$$ /$$$$$$$   /$$$$$$
+	| $$$$$$$/| $$| $$__  $$| $$| $$__  $$ /$$__  $$
+	| $$____/ | $$| $$  \ $$| $$| $$  \ $$| $$  \ $$
+	| $$      | $$| $$  | $$| $$| $$  | $$| $$  | $$
+	| $$      | $$| $$  | $$| $$| $$  | $$|  $$$$$$$
+	|__/      |__/|__/  |__/|__/|__/  |__/ \____  $$
+	                                       /$$  \ $$
+	                                      |  $$$$$$/
+	                                       \______/"""
 
-___________[<!>]V5.4.8 -> Debeloped by @Lucoberto[<!>]_______________
-			[1] Pining Automatico
-			[2] Pining Personalizado
-			[3] Pining URL
-			[4] Ayuda
-			[5] Salir
-"""
 def opciones():
 	os.system("clear")
 	global menuac
-	print(menu2)
-	print("-> Elija una opcion.")
+	print(C + logomenu + W)
 	print("")
-	op = input("Pininig@pining$~> ")
+	print(P + '___________[<!>]'+ C +'V5.4.9 -> Debeloped by'+ R +' @Lucoberto'+ P +'[<!>]_______________'+W)
+	print("")
+	print(R +'			[+]'+O+' Elija una opcion'+W)
+	print(R +'			[1]'+O+' Pining Automatico'+W)
+	print(R +'			[2]'+O+' Pining Personalizado'+W)
+	print(R +'			[3]'+O+' Pining URL'+W)
+	print(R +'			[4]'+O+' Ayuda'+W)
+	print(R +'			[5]'+O+' Salir'+W)
+	print("")
+	op = input(G+'Pininig'+P+'@'+G+'pining'+P+'$~> '+W)
 	if op == "1":
 		menuac = "automatico"
 	elif op == "2":
@@ -169,7 +194,7 @@ def opciones():
 	elif op == "4":
 		menuac="ayuda"
 	elif op == "5":
-		exit()
+		sys.exit()
 def motor():
 	try:
 		while True:
