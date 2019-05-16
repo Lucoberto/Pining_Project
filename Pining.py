@@ -113,13 +113,13 @@ def a_la_carta():
 			print(P+'----------------------------------------------'+W)
 			for N1 in range(int(p1[0]),256):
 				if parar == 1:
-					brea0
+					break
 				for N2 in range(int(p1[1]),256):
 					if parar == 1:
-						brea0
+						break
 					for N3 in range(int(p1[2]),256):
 						if parar == 1:
-							brea0
+							break
 						for N4 in range(int(p1[3]),256):
 							rango="{}.{}.{}.{}".format(N1,N2,N3,N4)
 							if ip == rango:
