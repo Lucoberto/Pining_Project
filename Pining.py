@@ -45,7 +45,7 @@ ________________________________________________________________________________
 
 -> El modo URL funciona de la siguiente manera:
 	-> Tiene que colcar la URL de la siguiente forma:
-		-> https://duc0duc0go.com puede ser que alguna pagina no llegue a dar ping
+		-> https://duckduckgo.com puede ser que alguna pagina no llegue a dar ping
 			esto puede ser por cuestiones de seguridad del propio servidor."""
 
 	Desp="""
